@@ -12,8 +12,10 @@ params.empty_mass = 380       * units.kilogram;
 params.mtow       = 720       * units.kilogram;
 params.fuel_mass  = 160 * 0.8 * units.kilogram;
 
-% Power
-params.power_max  = 180 * units.hp;
+% Power and consumption
+params.power_max            = 180 * units.hp;
+params.eta_mech             = 0.8;
+params.specific_consumption = 0.5 * (units.pound/units.hp/units.hour);
 
 % Aerodynamics
 params.fa  = 6 * units.foot^2;

@@ -12,6 +12,7 @@ omega = params.main_rotor.omega;
 fa = params.fa;
 b = params.main_rotor.blades;
 c = params.main_rotor.chord;
+eta = params.eta_mech;
 
 % Condition
 h = 1000 * units.foot;
@@ -34,8 +35,7 @@ lamb_c = 0;
 lamb_i = lamb_i0;
 
 % Power coefficient in hover
-CP_misc = 0;
-CP_hover = power_coefficient(k, CT, lamb_i, sig, cd0, mu, fa, R, lamb_c, CP_misc);
+CP_hover = power_coefficient(k, CT, lamb_i, sig, cd0, mu, fa, R, lamb_c, eta);
 
 % Dimensional quantities
 A = pi*R^2;
@@ -73,7 +73,7 @@ for i_roc = 1:length(roc_vec)
         v = speed_vec(i_speed);
         mu = v/omega/R;
         lamb_i = induced_speed_ratio(mu, lamb_c, lamb_i0);
-        CP = power_coefficient(k, CT, lamb_i, sig, cd0, mu, fa, R, lamb_c, CP_misc);
+        CP = power_coefficient(k, CT, lamb_i, sig, cd0, mu, fa, R, lamb_c, eta);
         P = CP*rho*A*(omega*R)^3;
         
         P_vec(i_speed) = P;
