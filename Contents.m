@@ -8,6 +8,7 @@
 %    power_coefficient - Power coefficient.
 %    figure_of_merit - Figure of merit.
 %    atmosphere - Atmosphere model.
+%    ground_effect - Ground effect on induced speed.
 %
 %  High level functions
 %    min_power_speed - Minimum power in forward flight.

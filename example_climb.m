@@ -1,3 +1,7 @@
+clear
+close all
+clc
+
 units = units_conversion;
 
 % Helicopter parameters

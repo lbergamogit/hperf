@@ -1,3 +1,7 @@
+clear
+close all
+clc
+
 units = units_conversion;
 
 % Helicopter parameters
@@ -22,21 +26,26 @@ disa = 0;
 rho = atmosphere(h, disa);
 sig = solidity(b, c, R);
 T = m*9.81;
+A = pi*R^2;
 
 % Thrust coefficient
 CT = thrust_coefficient(T, rho, R, omega);
+
+% Induced speed at hover
+lamb_i0 = induced_speed_ratio_hover(CT);
 
 %% Max ROC
 [v_max_roc, max_roc, P_max_roc] = ...
     max_rate_of_climb_speed(params, h, disa, params.mtow);
 
+fprintf('V max ROC: %.0f kt\n', v_max_roc / units.knot)
 fprintf('Max ROC: %.0f ft/min\n', max_roc / units.foot_per_minute)
 fprintf('P: %.0f hp\n', P_max_roc / units.hp)
 
 %% Forward climb
 figure
 
-lamb_c = roc/omega/R;
+lamb_c = max_roc/omega/R;
 
 speed_vec = (0:100)' * units.knot;
 P_vec = nan(size(speed_vec));
@@ -55,7 +64,7 @@ end
 
 plot(speed_vec / units.knot, P_vec / units.kilowatt)
 hold on
-plot(vc / units.knot, P_max_roc / units.kilowatt, 'o')
+plot(v_max_roc / units.knot, P_max_roc / units.kilowatt, 'o')
 plot(speed_vec / units.knot, ...
     ones(size(speed_vec))*params.power_max / units.kilowatt, '--r')
 

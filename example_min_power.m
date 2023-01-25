@@ -1,3 +1,7 @@
+clear
+close all
+clc
+
 units = units_conversion;
 
 % Helicopter parameters
@@ -22,15 +26,20 @@ disa = 0;
 rho = atmosphere(h, disa);
 sig = solidity(b, c, R);
 T = m*9.81;
+A = pi*R^2;
 
 % Thrust coefficient
 CT = thrust_coefficient(T, rho, R, omega);
 
+% Induced speed at hover
+lamb_i0 = induced_speed_ratio_hover(CT);
+
+
 %% Min power
 [vma, P_min] = min_power_speed(params, h, disa, params.mtow);
 
-fprintf('VH: %.0f ft/min\n', vh / units.knot)
-fprintf('P max cruise: %.0f hp\n', P_max_roc / units.hp)
+fprintf('V min power: %.0f kt\n', vma / units.knot)
+fprintf('P min: %.0f hp\n', P_min / units.hp)
 
 %% Forward level flight
 figure
