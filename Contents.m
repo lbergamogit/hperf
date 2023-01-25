@@ -26,3 +26,4 @@
 %    example_max_rate_of_climb - Maximum rate of climb exammple.
 %    example_max_cruise - Maximum cruise speed.
 %    example_min_power - Minimum power speed.
+%    example_ground_effect - Ground effect on hover power.
