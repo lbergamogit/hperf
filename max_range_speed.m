@@ -1,9 +1,8 @@
-function [vma, P] = min_power_speed(params, altitude, disa, mass)
-%MIN_POWER_SPEED Minimum power for level flight.
+function [vmr, P] = max_range_speed(params, altitude, disa, mass)
+%MAX_RANGE_SPEED Speed for maximum range.
 %
-%   [VMA, P] = MIN_POWER_SPEED(PARAMS, ALTITUDE, DISA, MASS) calculates
-%   minimum power P for horizontal flight and the correspondig speed VMA.
-%   VMA is the maximum endurance speed.
+%   [VMR, P] = MAX_RANGE_SPEED(PARAMS, ALTITUDE, DISA, MASS) calculates
+%   speed VMR for maximum range and the respective power P.
 
 % Unpack
 R = params.main_rotor.radius;
@@ -28,16 +27,17 @@ CT = thrust_coefficient(T, rho, R, omega);
 lamb_i0 = induced_speed_ratio_hover(CT);
 lamb_c = 0;
 
-    function P = fobj(V)
-        % Power
+    function range = fobj(V)
+        % Specific range (negative for maximization)
         mu = V/omega/R;
         lamb_i = induced_speed_ratio(mu, lamb_c, lamb_i0);
         cp = power_coefficient(k, CT, lamb_i, sig, cd0, mu, fa, R, ...
             lamb_c, eta);
         P = cp*rho*A*(omega*R)^3;
+        range = -V/P;
     end
 
-% Minimum power speed
-[vma, P] = fminsearch(@fobj, 20);
+% Maximum range speed
+vmr = fminsearch(@fobj, 20);
 
 end

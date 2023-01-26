@@ -14,9 +14,14 @@
 %    min_power_speed - Minimum power in forward flight.
 %    max_rate_of_climb_speed - Maximum rate of climb.
 %    max_cruise_speed - Maximum cruise speed.
+%    max_range_speed - Maximum range speed.
+%    mission - Mission performance.
 %
 %  Helicopter data
 %    helicopter_01 - light helicopter example.
+%
+%  Mission parameters
+%    mission_01 - typical mission parameters.
 %
 %  Utility functions
 %    units_conversion - Performs units conversion.
@@ -25,5 +30,7 @@
 %    example_climb - Forward flight climb exammple.
 %    example_max_rate_of_climb - Maximum rate of climb exammple.
 %    example_max_cruise - Maximum cruise speed.
+%    example_max_range - Maximum range speed.
 %    example_min_power - Minimum power speed.
 %    example_ground_effect - Ground effect on hover power.
+%    example_mission - Mission performance.
