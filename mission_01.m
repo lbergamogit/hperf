@@ -12,7 +12,7 @@ mission_inputs.range = 300 * units.nautical_mile; % Set 0 for max range
 
 % Departure
 mission_inputs.departure_altitude = 0 * units.foot;
-mission_inputs.departure_hover_height = 6 * units.foot;
+mission_inputs.departure_hover_height = 6 * units.foot + 2427 * units.milimiter;
 mission_inputs.departure_hover_time = 5 * units.minute;
 
 % Climb
@@ -33,7 +33,7 @@ mission_inputs.descent_speed = 0; % Set 0 for Vy
 
 % Arrival
 mission_inputs.arrival_altitude = 0 * units.foot;
-mission_inputs.arrival_hover_height = 6 * units.foot;
+mission_inputs.arrival_hover_height = 6 * units.foot + 2427 * units.milimiter;
 mission_inputs.arrival_hover_time = 5 * units.minute;
 
 end
