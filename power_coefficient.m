@@ -26,7 +26,7 @@ cp_c = CT * lamb_c; % Climb power
 
 cp_req = cp_i + cp_p + cp_f + cp_c;
 
-cp_misc = (1 - eta) * cp_req;
+cp_misc = (1/eta - 1) * cp_req;
 
 cp = cp_req + cp_misc;
 
